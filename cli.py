@@ -33,12 +33,32 @@ def main():
         help="Fields for the model. Use format <name>:<type>. Valid types str, int, bool",
     )
 
+    parser.add_argument(
+        "--config", "-c", 
+        dest="config_file", 
+        type=str,
+        help="Provide a config file to read from",
+    )
+
     args = parser.parse_args()
 
     if args.action == ACTION_ADD_MODEL:
+        if args.name is None:
+            print("Please add model name")
+            return
+
+        if args.fields is None or len(args.fields) == 0:
+            print("Please add fields to the model")
+            return
+
         import persistence as persist
         persist.add_model(args.name, args.fields)
-    print(args.action)
+        return
+
+    if args.action == ACTION_BUILD_CONFIG:
+        import helpers
+        helpers.main(args.config_file)
+
 
 if __name__ == "__main__":
     main()
