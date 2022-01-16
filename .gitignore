@@ -1,1 +1,6 @@
 db.db
+__pycache__
+dist
+build
+env
+cli.spec
