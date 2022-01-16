@@ -3,9 +3,4 @@ deps:
   - requests
   # - dotenv-python
   # - scrapy
-scraper: true
-database: sql
-cli: true
-docker: true
-api: true
-cron: true
+helpers:
